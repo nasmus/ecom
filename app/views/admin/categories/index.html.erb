@@ -1,5 +1,4 @@
 <% content_for :title, "Categories" %>
-
 <div class="w-full">
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
@@ -11,9 +10,36 @@
   </div>
 
   <div>
-    <%= render @admin_categories %>
+    
   </div>
-  
-
+  <div class="relative overflow-x-auto">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                     Image
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Category name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Category description
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Show
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Edit
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <%= render @admin_categories %>
+        </tbody>
+    </table>
+</div>
   
 </div>
