@@ -1,0 +1,53 @@
+<% content_for :title, "Showing order" %>
+
+<div class="md:w-2/3 w-full">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-md inline-block" id="notice"><%= notice %></p>
+  <% end %>
+
+  <h1 class="font-bold text-4xl">Showing order</h1>
+
+  
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 ">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    Email
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Full Filled
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Total 
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Address
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    View
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Edit
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Delete
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+          <%= render @admin_order %>
+        </tbody>
+    </table>
+  </div>
+  <% if @admin_order.order_products.any? %>
+    <%@admin_order.order_products.each do |order_product| %>
+      <div class="pl-10">
+        <p class="text-gray-600">Product: <%= order_product.product.name %></p>
+        <p class="text-gray-600">Quantity: <%= order_product.quantity %></p>
+        <p class="text-gray-600">Size: <%= order_product.size %></p>
+      </div>
+    <% end %>
+  <%end%>
+
+</div>

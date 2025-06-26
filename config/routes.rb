@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   namespace :admin do
+    resources :orders
     resources :products do
       resources :stocks
     end
@@ -14,6 +15,5 @@ Rails.application.routes.draw do
   end
 
   get "admin" => "admin#index"
-
 
 end
