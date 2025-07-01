@@ -1,5 +1,6 @@
 class Admin::OrdersController < AdminController
   before_action :set_admin_order, only: %i[ show edit update destroy ]
+  skip_before_action :verify_authenticity_token, only: [:mark_as_fulfilled]
 
   # GET /admin/orders or /admin/orders.json
   def index
@@ -45,6 +46,15 @@ class Admin::OrdersController < AdminController
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @admin_order.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def mark_as_fulfilled
+    @admin_order = Order.find(params[:id])
+    if @admin_order.update(fulfilled: true)
+      redirect_to admin_orders_path, notice: "Order marked as fulfilled."
+    else
+      redirect_to admin_orders_path, alert: "Failed to mark order as fulfilled."
     end
   end
 
